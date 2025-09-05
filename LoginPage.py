@@ -65,7 +65,7 @@ def test_missing_email(email, password, login, wait):
         print("Username field not found on the page.")
 
 
-def test_missing_pwd(email, password, login, wait):
+def test_missing_pwd(email, password, login, wait,driver):
     # Test case 3: Missing password
     email.clear()
     email.send_keys("laxmi@gmail.com")
@@ -74,7 +74,7 @@ def test_missing_pwd(email, password, login, wait):
     error_msg = error_message(wait)
     print(error_msg)
     time.sleep(5)
-    # driver.save_screenshot(os.getcwd() + "\\missing_pwd.png")
+    driver.save_screenshot(os.getcwd() + "\\missing_pwd.png")
 
 
 def test_missing_emailpwd(email, password, login, wait):
@@ -90,6 +90,8 @@ def test_masking(driver, password):
     # Test case 5: validate password masking
     password.send_keys("laxmi")
     driver.find_element(By.CLASS_NAME, "passowrd-visible").click()
+    time.sleep(5)
+    driver.save_screenshot(os.getcwd() + "\\toggle.png")
 
 
 def test_email_pattern(email, password, login, waiit):
@@ -144,7 +146,7 @@ def main():
     test_missing_email(email, pwd, login, wait)
     time.sleep(5)
 
-    test_missing_pwd(email, pwd, login, wait)
+    test_missing_pwd(email, pwd, login, wait, driver)
     time.sleep(5)
 
     test_missing_emailpwd(email, pwd, login, wait)
